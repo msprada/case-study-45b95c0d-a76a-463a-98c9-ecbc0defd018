@@ -1,4 +1,4 @@
-namespace caseStudy.RoomBooking.Infrastrcucture.Persistence.Entites
+namespace caseStudy.RoomBooking.Infrastructure.Persistence.Entities
 {
       public class User:BaseEntity
     {
