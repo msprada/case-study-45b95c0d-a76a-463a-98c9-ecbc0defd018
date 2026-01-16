@@ -50,8 +50,15 @@ Onion-Architecture
 ### 2.1 Create Empty Solution
 
 ```
+dotnet new sln
+```
+
+- add default gitignore
 
 ```
+dotnet new gitignore
+```
+
 
 
 ```
@@ -61,6 +68,7 @@ Onion-Architecture
 ### 2.2 Create Domain Module
 
 ```
+dotnet new classlin -o roombooking-system-domain
 
 ```
 
