@@ -98,14 +98,41 @@ donet sln add caseStudy.RoomBooking.Presentation.API/caseStudy.RoomBooking.Prese
 ### 2.4 Create Infrastructure
 
 ```
-dotnet new classlib -o caseStudy.RoomBooking.Infrastrcucture
+dotnet new classlib -o caseStudy.RoomBooking.Infrastructure
 ```
 
 -  add project to solution
 
 ```
-dotnet sln add  ./caseStudy.RoomBooking.Infrastrcucture/caseStudy.RoomBooking.Infrastrcucture.csproj
+dotnet sln add  ./caseStudy.RoomBooking.Infrastructure/caseStudy.RoomBooking.Infrastructure.csproj
 ```
+
+
+- add EF to Project
+```
+dotnet add package Microsoft.EntityFrameworkCore --project caseStudy.RoomBooking.Infrastructure/caseStudy.RoomBooking.Infrastructure.csproj
+```
+
+```
+dotnet add package Microsoft.EntityFrameworkCore.Design --project caseStudy.RoomBooking.Infrastructure/caseStudy.RoomBooking.Infrastructure.csproj
+```
+
+- use Postgres Driver
+
+```
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --project caseStudy.RoomBooking.Infrastructure/caseStudy.RoomBooking.Infrastructure.csproj
+```
+
+- add reference to project domain
+
+```
+dotnet add reference ../caseStudy.RoomBooking.Domain/caseStudy.RoomBooking.Domain.csproj --project caseStudy.RoomBooking.Infrastructure/caseStudy.RoomBooking.Infrastructure.csproj
+```
+
+
+
+
+
 
 
 
@@ -120,5 +147,25 @@ dotnet sln add  ./caseStudy.RoomBooking.Infrastrcucture/caseStudy.RoomBooking.In
 
 
 ## 3. Run Project
+
+## 4. Dependencies
+
+- install donet EF CLI
+
+```
+dotnet tool install --global dotnet-ef
+```
+
+## 5.Migrations
+
+- add new migration 
+
+```
+cd caseStudy.RoomBooking.Infrastructure
+dotnet-ef migrations add initialMigration
+```
+
+
+
 
 
