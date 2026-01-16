@@ -3,8 +3,9 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
     using Microsoft.EntityFrameworkCore;
     using System;
     using caseStudy.RoomBooking.Domain.Entities;
+    using caseStudy.RoomBooking.Infrastructure.Persistence.Services;
 
-    public class EFContext: DbContext
+    public class EFContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 
@@ -12,11 +13,27 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
 
         public EFContext() : base() { }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Replace with your actual PostgreSQL connection string
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=RoomBookingDb;Username=postgres;Password=");
+            }
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region "Users"
-            modelBuilder.Entity<User>()
-                .Property(x => x.Id).HasDefaultValue(Guid.NewGuid().ToString());
+                modelBuilder.Entity<User>()
+                    .Property(x => x.Id)
+                    .HasConversion(
+                        v => Guid.Parse(v),  // Convert string to Guid for database storage
+                        v => v.ToString()    // Convert Guid back to string for application use
+                    )
+                    .HasValueGenerator<GuidStringGenerator>()  // Use the custom generator
+                    .ValueGeneratedOnAdd()  // Enable auto-generation
+                    .HasColumnType("uuid");
             #endregion
         }
     }
