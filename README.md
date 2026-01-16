@@ -68,9 +68,16 @@ dotnet new gitignore
 ### 2.2 Create Domain Module
 
 ```
-dotnet new classlin -o roombooking-system-domain
+dotnet new classlib -o caseStudy.RoomBooking.Domain
 
 ```
+
+- add project to solution
+
+```
+dotnet sln add ./caseStudy.RoomBooking.Domain/caseStudy.RoomBooking.Domain.csproj 
+```
+
 
 
 
