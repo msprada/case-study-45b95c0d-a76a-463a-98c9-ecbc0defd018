@@ -1,4 +1,4 @@
-namespace caseStudy.RoomBooking.Domain.Entitties
+namespace caseStudy.RoomBooking.Domain.Entities
 {
     public class User
     {
