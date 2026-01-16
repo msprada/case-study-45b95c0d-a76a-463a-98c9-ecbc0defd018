@@ -165,6 +165,12 @@ cd caseStudy.RoomBooking.Infrastructure
 dotnet-ef migrations add initialMigration
 ```
 
+- update database
+```
+cd caseStudy.RoomBooking.Infrastructure
+dotnet-ef database update
+```
+
 
 
 
