@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="caseStudy.RoomBooking.Domain/caseStudy.RoomBooking.Domain.csproj" />
   <Project Path="caseStudy.RoomBooking.Infrastructure/caseStudy.RoomBooking.Infrastructure.csproj" />
+  <Project Path="caseStudy.RoomBooking.Presentation.API/caseStudy.RoomBooking.Presentation.API.csproj" />
 </Solution>
