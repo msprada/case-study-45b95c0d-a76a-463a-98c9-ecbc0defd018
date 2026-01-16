@@ -84,7 +84,15 @@ dotnet sln add ./caseStudy.RoomBooking.Domain/caseStudy.RoomBooking.Domain.cspro
 ### 2.3 Create Presentation Layer (REST API)
 
 ```
+ dotnet new web -o caseStudy.RoomBooking.Presentation.API
 ```
+
+- add project to solution
+
+```
+donet sln add caseStudy.RoomBooking.Presentation.API/caseStudy.RoomBooking.Presentation.API.csproj 
+```
+
 
 
 ### 2.4 Create Infrastructure
