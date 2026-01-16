@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using caseStudy.RoomBooking.Domain.Entities;
+using caseStudy.RoomBooking.Domain.Repositories;
 using System.ComponentModel.DataAnnotations;
+
+
 
 namespace caseStudy.RoomBooking.Presentation.API.Controllers
 {
@@ -8,14 +11,21 @@ namespace caseStudy.RoomBooking.Presentation.API.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
+
+        private readonly IRepository<User> _userRepository;
+
+        public UsersController(IRepository<User> userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
+
         // GET: api/users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public ActionResult<IEnumerable<User>> GetUsers()
         {
-            return new List<User>{
-                new User { Id = Guid.NewGuid().ToString(), Firstname = "Alice", Lastname = "Smith", Email="alice.smith@example.com" },
-                new User { Id = Guid.NewGuid().ToString(), Firstname = "Bob", Lastname = "Johnson", Email="bob.johnson@example.com" }
-            };
+            var users = _userRepository.GetAll();
+            return Ok(users);
         }
 
     }
