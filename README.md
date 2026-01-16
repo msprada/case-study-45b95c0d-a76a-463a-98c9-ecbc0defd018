@@ -96,11 +96,18 @@ donet sln add caseStudy.RoomBooking.Presentation.API/caseStudy.RoomBooking.Prese
 
 
 ### 2.4 Create Infrastructure
-```
 
 ```
+dotnet new classlib -o caseStudy.RoomBooking.Infrastrcucture
+```
 
-- delete auto generated files from main and src folder
+-  add project to solution
+
+```
+dotnet sln add  ./caseStudy.RoomBooking.Infrastrcucture/caseStudy.RoomBooking.Infrastrcucture.csproj
+```
+
+
 
 
 ### 2.5 Create Application Layer

@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="caseStudy.RoomBooking.Domain/caseStudy.RoomBooking.Domain.csproj" />
+  <Project Path="caseStudy.RoomBooking.Infrastrcucture/caseStudy.RoomBooking.Infrastrcucture.csproj" />
 </Solution>
