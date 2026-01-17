@@ -11,6 +11,8 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Booking> Bookings { get; set; }
+
         public EFContext(DbContextOptions contextOptions) : base(contextOptions) { }
 
         public EFContext() : base() { }
