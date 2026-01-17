@@ -3,6 +3,8 @@
   <ItemGroup>
     <ProjectReference Include="..\caseStudy.RoomBooking.Domain\caseStudy.RoomBooking.Domain.csproj" />
     <ProjectReference Include="..\caseStudy.RoomBooking.Infrastructure\caseStudy.RoomBooking.Infrastructure.csproj" />
+    <ProjectReference Include="..\caseStudy.RoomBooking.Application.Abstractions\caseStudy.RoomBooking.Application.Abstractions.csproj" />
+       <ProjectReference Include="..\caseStudy.RoomBooking.Application\caseStudy.RoomBooking.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

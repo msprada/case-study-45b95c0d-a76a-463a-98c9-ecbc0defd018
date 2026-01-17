@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using caseStudy.RoomBooking.Domain.Entities;
 using caseStudy.RoomBooking.Domain.Repositories;
 using System.ComponentModel.DataAnnotations;
+using caseStudy.RoomBooking.Application.Abstractions;
 
 
 
@@ -12,11 +13,12 @@ namespace caseStudy.RoomBooking.Presentation.API.Controllers
     public class UsersController : ControllerBase
     {
 
-        private readonly IRepository<User> _userRepository;
+        private readonly ICore _coreService;
 
-        public UsersController(IRepository<User> userRepository)
+        public UsersController(ICore coreService)
         {
-            _userRepository = userRepository;
+            this._coreService = coreService;
+            
         }
 
 
@@ -24,7 +26,7 @@ namespace caseStudy.RoomBooking.Presentation.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            var users = await _userRepository.GetAllAsync();
+            var users = await this._coreService.UnitOfWork.GetRepository<User>().GetAllAsync();
             return Ok(users);
         }
 
