@@ -4,11 +4,11 @@ using caseStudy.RoomBooking.Application.Abstractions;
 
 public class BookingService:IBookingService
 {
-    private readonly IRepository<Booking> _bookingRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public BookingService(IRepository<Booking> bookingRepository)
+    public BookingService(IUnitOfWork unitOfWork)
     {
-        _bookingRepository = bookingRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Booking> CreateBookingAsync(BookingCreateDto request)
@@ -21,29 +21,31 @@ public class BookingService:IBookingService
             Ending = request.Ending
         };
 
-        await _bookingRepository.AddAsync(booking);
+        await _unitOfWork.GetRepository<Booking>().AddAsync(booking);
+        await _unitOfWork.SaveAllAsync();
         return booking;
     }
 
     public async Task<Booking> GetBookingByIdAsync(Guid bookingId)
     {
-        return await _bookingRepository.GetByIdAsync(bookingId.ToString());
+        return await _unitOfWork.GetRepository<Booking>().GetByIdAsync(bookingId.ToString());
     }
 
     public async Task<IEnumerable<Booking>> GetAllBookingsAsync()
     {
-        return await _bookingRepository.GetAllAsync();
+        return await _unitOfWork.GetRepository<Booking>().GetAllAsync();
     }
 
     public async Task<bool> CancelBookingAsync(Guid bookingId)
     {
-        var booking = await _bookingRepository.GetByIdAsync(bookingId.ToString());
+        var booking = await _unitOfWork.GetRepository<Booking>().GetByIdAsync(bookingId.ToString());
         if (booking == null)
         {
             return false;
         }
 
-        await _bookingRepository.DeleteAsync(booking);
+        await _unitOfWork.GetRepository<Booking>().DeleteAsync(booking);
+        await _unitOfWork.SaveAllAsync();
         return true;
     }
 }
