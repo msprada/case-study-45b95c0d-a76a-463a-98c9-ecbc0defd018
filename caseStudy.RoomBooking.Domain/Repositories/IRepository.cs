@@ -11,16 +11,16 @@ namespace caseStudy.RoomBooking.Domain.Repositories
 
     public interface IRepository<T> where T : BaseEntity
     {
-        Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<T>> GetAllAsync();
 
-        Task<IQueryable<T>> Query(params Expression<Func<T, object>>[] includeProperties);
+        Task<IQueryable<T>> QueryAsync(params Expression<Func<T, object>>[] includeProperties);
 
-        Task<T> GetById(string id);
+        Task<T> GetByIdAsync(string id);
 
-        Task Add(T entity);
+        Task AddAsync(T entity);
 
-        Task Delete(T entity);
+        Task DeleteAsync(T entity);
 
-        Task Update(T entity);
+        Task UpdateAsync(T entity);
     }
 }

@@ -21,13 +21,13 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
 
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
 
             return await context.Set<T>().ToListAsync();
 
         }
-        public async Task<IQueryable<T>> Query(params Expression<Func<T, object>>[] includeProperties)
+        public async Task<IQueryable<T>> QueryAsync(params Expression<Func<T, object>>[] includeProperties)
         {
 
             IQueryable<T> query = context.Set<T>();
@@ -39,31 +39,31 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
 
         }
 
-        public async Task<T> GetById(string id)
+        public async Task<T> GetByIdAsync(string id)
         {
 
             return await context.Set<T>().FindAsync(id);
 
         }
 
-        public async Task Add(T entity)
+        public async Task AddAsync(T entity)
         {
 
             await context.Set<T>().AddAsync(entity);
 
         }
 
-        public async Task Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
 
             context.Set<T>().Remove(entity);
 
         }
 
-        public async Task Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
 
-            var loaded = await GetById(entity.Id);
+            var loaded = await GetByIdAsync(entity.Id);
 
             if (loaded != null)
             {

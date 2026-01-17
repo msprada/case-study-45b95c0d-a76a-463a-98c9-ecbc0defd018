@@ -21,29 +21,29 @@ public class BookingService:IBookingService
             Ending = request.Ending
         };
 
-        await _bookingRepository.Add(booking);
+        await _bookingRepository.AddAsync(booking);
         return booking;
     }
 
     public async Task<Booking> GetBookingByIdAsync(Guid bookingId)
     {
-        return await _bookingRepository.GetById(bookingId.ToString());
+        return await _bookingRepository.GetByIdAsync(bookingId.ToString());
     }
 
     public async Task<IEnumerable<Booking>> GetAllBookingsAsync()
     {
-        return await _bookingRepository.GetAll();
+        return await _bookingRepository.GetAllAsync();
     }
 
     public async Task<bool> CancelBookingAsync(Guid bookingId)
     {
-        var booking = await _bookingRepository.GetById(bookingId.ToString());
+        var booking = await _bookingRepository.GetByIdAsync(bookingId.ToString());
         if (booking == null)
         {
             return false;
         }
 
-        await _bookingRepository.Delete(booking);
+        await _bookingRepository.DeleteAsync(booking);
         return true;
     }
 }

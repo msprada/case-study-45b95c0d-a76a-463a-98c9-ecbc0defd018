@@ -24,7 +24,7 @@ namespace caseStudy.RoomBooking.Presentation.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            var users = await _userRepository.GetAll();
+            var users = await _userRepository.GetAllAsync();
             return Ok(users);
         }
 
