@@ -22,9 +22,9 @@ namespace caseStudy.RoomBooking.Presentation.API.Controllers
 
         // GET: api/users
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            var users = _userRepository.GetAll();
+            var users = await _userRepository.GetAll();
             return Ok(users);
         }
 
