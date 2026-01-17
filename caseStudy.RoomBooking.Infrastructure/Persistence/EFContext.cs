@@ -15,14 +15,14 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
 
         public EFContext() : base() { }
 
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     if (!optionsBuilder.IsConfigured)
-        //     {
-        //         // Replace with your actual PostgreSQL connection string
-        //         optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=RoomBookingDb;Username=postgres;Password=");
-        //     }
-        // }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Replace with your actual PostgreSQL connection string
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=RoomBookingDb;Username=postgres;Password=");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
