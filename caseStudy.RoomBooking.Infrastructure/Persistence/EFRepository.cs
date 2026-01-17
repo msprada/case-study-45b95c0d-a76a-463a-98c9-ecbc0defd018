@@ -7,6 +7,7 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
 
     public class EFRepository<T> : IRepository<T> where T : BaseEntity
@@ -20,13 +21,13 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
 
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
 
-            return context.Set<T>().ToList();
+            return await context.Set<T>().ToListAsync();
 
         }
-        public IQueryable<T> Query(params Expression<Func<T, object>>[] includeProperties)
+        public async Task<IQueryable<T>> Query(params Expression<Func<T, object>>[] includeProperties)
         {
 
             IQueryable<T> query = context.Set<T>();
@@ -38,30 +39,31 @@ namespace caseStudy.RoomBooking.Infrastructure.Persistence
 
         }
 
-        public T GetById(string id)
+        public async Task<T> GetById(string id)
         {
 
-            return context.Set<T>().Find(id);
+            return await context.Set<T>().FindAsync(id);
 
         }
 
-        public void Add(T entity)
+        public async Task Add(T entity)
         {
 
-            context.Set<T>().Add(entity);
+            await context.Set<T>().AddAsync(entity);
 
         }
 
-        public void Delete(T entity)
+        public async Task Delete(T entity)
         {
 
             context.Set<T>().Remove(entity);
+
         }
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
 
-            var loaded = GetById(entity.Id);
+            var loaded = await GetById(entity.Id);
 
             if (loaded != null)
             {
